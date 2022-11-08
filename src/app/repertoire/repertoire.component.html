@@ -1,0 +1,36 @@
+<div>
+  <p>
+    nouveau contact <br>
+  nom :<input type="text"  [(ngModel)]="nom"> <br>
+  tel :<input type="text"  [(ngModel)]="tel"> <br>
+
+  <button (click)="addContact()" [disabled]="nom.length==0 || tel.length==0">Ajouter contact</button>
+  </p>
+  <p>
+    nom recherché :<input type="text"  [(ngModel)]="nomRech"> <br>
+    <button (click)="search()" [disabled]="nomRech.length==0 || tel.length==0">rechercher contact</button>
+  </p>
+  <div *ngIf="foundContact!=null;else notFound">
+  TEL :  {{foundContact.tel}}
+  </div>
+  <ng-template #notFound>
+    <div>
+      aucun contact de ce nom
+    </div>
+  </ng-template>
+
+</div>
+
+
+<div *ngIf="contacts.length>0;else vide">
+  <h3> liste des contacts</h3>
+  <li *ngFor = "let c of contacts">
+    {{c.nom }} : {{c.tel}}
+  </li>
+</div>
+<ng-template #vide>
+  <div>
+    Aucun contact
+  </div>
+</ng-template>
+
